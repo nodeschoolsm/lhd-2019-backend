@@ -9,5 +9,9 @@ module.exports = {
     getHackerByToken : async (token)=>{
         let result = await db.query("SELECT id_hacker, first_name, last_name FROM hackers WHERE token = ?",[token]);
         return result
+    },
+    updateHacker : async (token)=>{
+        let result = await db.query("UPDATE hackers SET checkin = 1 WHERE token = ?",[token]);
+        return result
     }
 }

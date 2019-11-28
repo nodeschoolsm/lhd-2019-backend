@@ -13,5 +13,14 @@ module.exports ={
         }else{
             res.status(200).send(data[0])
         }
+    },
+    updateHacker : async (req,res)=>{
+        const {token} = req.params;
+        const data = await service.updateHacker(token);
+        if(data.affectedRows != 0){
+            res.status(200).send('Succesfull update!')
+        }else{
+            res.status(500).send('Something goes wrong :(')
+        }
     }
 }
