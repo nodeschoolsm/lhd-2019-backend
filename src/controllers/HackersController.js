@@ -9,7 +9,7 @@ module.exports ={
         const {token} = req.params;
         const data = await service.getHackerByToken(token);
         if (data.length === 0){
-            res.status(404).send('Hacker not found :(')
+            res.status(404).json({error:true})
         }else{
             res.status(200).send(data[0])
         }
