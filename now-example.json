@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "name": "lhd-api",
+    "builds": [
+      { "src": "src/server.js", "use": "@now/node" }
+    ],
+    "env":{
+        "DB_HOST":"",
+        "DB_USER":"",
+        "DB_PASSWORD":"",
+        "DB_PORT":"",
+        "DB_DATABASE":""
+    },
+    "routes": [
+        {
+            "src": "/api/hackers.*",
+            "dest": "src/server.js",
+            "methods": ["GET"]
+          },
+        {
+          "src": "/api/hackers/(?<token>[^/]*)",
+          "dest": "src/server.js?token=$token",
+          "methods": ["GET","PUT"]
+        }
+      ]
+  }
