@@ -3,11 +3,11 @@ const db = connection.makeDb()
 
 module.exports = {
     getHackers : async ()=>{
-        let result = await db.query("SELECT id_hacker, first_name, last_name  FROM hackers");
+        let result = await db.query("SELECT idHacker, firstName, lastName  FROM hackers");
         return result
     },
     getHackerByToken : async (token)=>{
-        let result = await db.query("SELECT id_hacker as id, CONCAT(first_name,' ',last_name) as name, token as email FROM hackers WHERE token = ?",[token]);
+        let result = await db.query("SELECT idHacker as id, CONCAT(firstName,' ',lastName) as name, email FROM hackers WHERE token = ?",[token]);
         return result
     },
     updateHacker : async (token)=>{
