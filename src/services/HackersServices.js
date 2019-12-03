@@ -7,7 +7,7 @@ module.exports = {
         return result
     },
     getHackerByToken : async (token)=>{
-        let result = await db.query("SELECT idHacker as id, CONCAT(firstName,' ',lastName) as name, email FROM hackers WHERE token = ?",[token]);
+        let result = await db.query("SELECT idHacker as id, CONCAT(firstName,' ',lastName) as name, email,checkin FROM hackers WHERE token = ?",[token]);
         return result
     },
     updateHacker : async (token)=>{
