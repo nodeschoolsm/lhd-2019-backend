@@ -32,6 +32,11 @@
           "src": "/api/teams.*",
           "dest": "src/server.js",
           "methods": ["POST","OPTIONS","GET"]
+        },
+        {
+          "src": "/api/teams/(?<id>[^/]*)",
+          "dest": "src/server.js?id=$id",
+          "methods": ["GET"]
         }
     ]
 }

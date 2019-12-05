@@ -24,5 +24,14 @@ module.exports = {
     getTeams: async(req,res)=>{
         const data = await service.getTeams();
         res.status(200).send(data);
+    },
+    getMembers : async (req,res)=>{
+        const {id} = req.params;
+        const data = await service.getMembers(id);
+        if (!data){
+            res.status(404).json({found:false})
+        }else{
+                res.status(200).json(data)
+        }
     }
 }
