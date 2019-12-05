@@ -19,5 +19,10 @@ module.exports = {
     getCategories: async(req,res)=>{
         const data = await service.getCategories();
         res.status(200).send(data);
+    },
+
+    getTeams: async(req,res)=>{
+        const data = await service.getTeams();
+        res.status(200).send(data);
     }
 }

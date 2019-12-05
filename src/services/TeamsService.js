@@ -22,5 +22,9 @@ module.exports = {
     getCategories: async () =>{
         let result = await db.query("SELECT idCategory, description FROM categories WHERE status = 1");
         return result
+    },
+    getTeams: async () =>{
+        let result = await db.query("SELECT a.idTeam as id, b.description as category, a.nameTeam, (SELECT COUNT(*) FROM team_hackers WHERE idTeam=a.idTeam) as members FROM teams a INNER JOIN categories b ON a.idCategory=b.idCategory WHERE a.status = 1");
+        return result
     }
 }
