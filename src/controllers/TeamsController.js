@@ -7,9 +7,9 @@ module.exports = {
             teamData['userCreatedBy'] = createdBy;
             let result = await service.createTeam(teamData,hackers);
             if (result.errno) {
-               return res.status(500).send({success:false,msg:"Team created successfully"});
+               return res.status(500).send({success:false,msg:result.errno});
             }else{
-                return res.status(201).send({success:true,msg:"Team created successfully"});
+                return res.status(200).send({success:true,msg:"Team created successfully"});
             }
 
         } else {

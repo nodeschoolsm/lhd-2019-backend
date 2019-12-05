@@ -11,7 +11,7 @@ module.exports = {
                 id = await db.query("INSERT INTO teams SET ?", [teamData]);
                 idTeam = id.insertId;
                 const hackersWithTeams = addIdTeam(hackers,idTeam);
-                await db.query("INSERT INTO team_hackers (idHacker,idTeam) VALUES ?", [hackersWithTeams]);
+                await db.query("INSERT INTO team_hackers (idHacker,idTeam,idEvent) VALUES ?", [hackersWithTeams]);
                 await db.query("INSERT INTO hackers (idHacker) VALUES ? ON DUPLICATE KEY UPDATE checkin = ?",[hackers.map((hacker,i)=>[hackers[i]]),1]);
             })
         } catch (err) {

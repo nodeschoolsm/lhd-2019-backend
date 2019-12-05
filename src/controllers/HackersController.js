@@ -9,9 +9,14 @@ module.exports ={
         const {token} = req.params;
         const data = await service.getHackerByToken(token);
         if (data.length === 0){
-            res.status(404).json({error:true})
+            res.status(404).json({found:false})
         }else{
-            res.status(200).send(data[0])
+            if(data[0].checkin==1){
+                res.status(406).json({found:true,checkin:true})
+            }else{
+
+                res.status(200).send(data[0])
+            }
         }
     },
     updateHacker : async (req,res)=>{
