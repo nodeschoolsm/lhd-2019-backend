@@ -2,6 +2,17 @@ const connection = require('../config/dbConnector')
 const db = connection.makeDb()
 
 module.exports = {
+    createHacker: async (hacker) => {
+        let result;
+        try {
+            result = await connection.withTransaction(db, async () => {
+                id = await db.query("INSERT INTO hackers SET ?", [hacker]);
+            })
+        } catch (err) {
+            return err
+        }
+        return result
+    },
     getHackers : async ()=>{
         let result = await db.query("SELECT idHacker, firstName, lastName  FROM hackers");
         return result
