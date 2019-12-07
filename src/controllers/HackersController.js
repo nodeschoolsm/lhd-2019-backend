@@ -21,7 +21,7 @@ module.exports ={
                return res.status(500).send({success:false,msg:result.errno});
             }else{
                 await transporter.sendMail({
-                    from:"'NodeSchool San Miguel' <hello@nodeschoolsm.io>",
+                    from:`'NodeSchool San Miguel' <${process.env.USER_EMAIL}>`,
                     to:hacker.email,
                     subject:'Registro Local Hack Day!',
                     html:template(`${hacker.firstName} ${hacker.lastName}`,hacker.token)
