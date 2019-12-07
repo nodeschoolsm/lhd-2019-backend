@@ -1,4 +1,16 @@
 const service = require('../services/HackersServices')
+const nodeMailer = require('nodemailer');
+const {template} = require('../emailTemplae/template')
+
+const transporter = nodeMailer.createTransport({
+    host:process.env.HOST_EMAIL,
+    auth:{
+        user:process.env.USER_EMAIL,
+        pass:process.env.PASS_EMAIL
+    }
+})
+
+
 
 module.exports ={
     createHacker: async (req, res) => {
@@ -8,6 +20,12 @@ module.exports ={
             if (result.errno) {
                return res.status(500).send({success:false,msg:result.errno});
             }else{
+                await transporter.sendMail({
+                    from:"'NodeSchool San Miguel' <hello@nodeschoolsm.io>",
+                    to:hacker.email,
+                    subject:'Registro Local Hack Day!',
+                    html:template(`${hacker.firstName} ${hacker.lastName}`,hacker.token)
+                })
                 return res.status(200).send({success:true,msg:"Hacker created successfully"});
             }
 
